@@ -1,0 +1,4 @@
+interface:
+  display_name: "主题绘本小红书"
+  short_description: "生成明亮治愈系绘本提示词Word包"
+  default_prompt: "Use $theme-picturebook-xhs to create a Xiaohongshu-ready picturebook prompt package as a Word document from my theme."
