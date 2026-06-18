@@ -96,7 +96,7 @@ When actual image generation is requested, create at least two character-referen
 
 Before writing any image prompt, decide whether the final image should contain visible text. Treat all intended in-image text as exact production text.
 
-Default for interior illustrations: every interior image must contain visible page text and a lower-right Arabic page number. The page text should accurately describe the page content, action change, emotional shift, or story transition, with enough words for a child to understand what is happening in the picture. Reserve quiet text areas in the composition from the start instead of treating text as an optional overlay. Image models often produce pseudo-text, so keep embedded interior text precise, readable, and tightly specified rather than vague.
+Default for interior illustrations: every interior image must contain visible page text and a lower-right Arabic page number. The page text should accurately describe the page content, action change, emotional shift, cause, or story transition, with enough words for a child to understand what is happening in the picture. Default to 2-3 short visible text blocks, not a single simple caption: block 1 carries over from the previous page through time, place, action, or emotion; block 2 explains the current action, discovery, feeling, or cause; block 3 is optional and introduces the next question, discovery, or action. Reserve independent quiet text areas in the composition from the start instead of treating text as an optional overlay. Image models often produce pseudo-text, so keep embedded interior text precise, readable, and tightly specified rather than vague.
 
 If no text should appear, include:
 
@@ -110,8 +110,9 @@ If any text should appear in the image:
 - Describe where each text string appears, such as top center, lower right, on a wooden sign, on a notebook page, on a phone screen, or on a shop awning.
 - Describe the approximate size and hierarchy, such as title, subtitle, small label, tiny handwritten note, readable sign text, or screen header.
 - Describe font or lettering style, such as rounded children's book title lettering, neat handwritten Chinese, carved wooden characters, printed menu text, soft brush lettering, or simple UI sans-serif.
+- For interior page text, wrap each text block separately in English double quotes. Specify each block's placement, approximate size, line spacing, font style, and quiet area independently; do not stack all blocks into one crowded paragraph.
 - For every single sentence or page-text line, require one uniform font size, weight, style, and baseline across all characters. Do not create mixed-size Chinese characters, decorative emphasized words, jumping letters, or uneven typography inside the same sentence.
-- If an interior page intentionally combines two adjacent story beats because the pictures would be too similar, include two exact quoted page-text sentences. Specify two staggered placements for the sentences, for example first sentence in the upper-left open sky and second sentence in the lower-left floor or grass margin. Do not stack both sentences into one cramped block, and do not let either sentence overlap characters, faces, important props, or the page number.
+- If an interior page intentionally combines two adjacent story beats because the pictures would be too similar, include separate exact quoted page-text blocks. Specify staggered placements for the blocks, for example first block in the upper-left open sky and second block in the lower-left floor or grass margin. Do not stack blocks into one cramped block, and do not let any block overlap characters, faces, important props, or the page number.
 - Describe layout and material when relevant, such as centered two-line cover title, vertical signboard, chalkboard menu, paper label, cloth banner, road sign, phone UI, tablet screen, map legend, chart label, or worksheet step.
 - Include text that appears on objects inside the scene, including signs,路标, labels, books, notebooks, screens, packaging, maps, posters, menus, UI panels, charts, diagrams, or classroom boards.
 - Apply the same exact-text rule to any text element introduced during reasoning, including self-added charts, labels, diagrams, clue cards, recipe cards, growth timelines, or problem-solving steps.
@@ -119,7 +120,7 @@ If any text should appear in the image:
 
 For poster, menu, UI, workbook, chart, map, or other design-like images, list all visible text strings before the visual description, then specify the typography and layout for each text group.
 
-Keep generated in-image text concise but not underwritten. For interior pages, missing, unreadable, pseudo, generic, story-inaccurate, or unevenly sized page text is a QA failure; regenerate or correct the page until the final interior image contains the required readable and story-accurate text.
+Keep generated in-image text concise but not underwritten. For interior pages, missing, unreadable, pseudo, generic, story-inaccurate, disconnected, single-caption-by-default, or unevenly sized page text is a QA failure; regenerate or correct the page until the final interior image contains the required readable story-accurate text blocks and a natural transition with adjacent pages.
 
 ## Cover Prompt
 
@@ -148,15 +149,15 @@ Each interior prompt must preserve continuity:
 - Use the same names and compact visual anchors from the lock sheet.
 - State which characters are visible.
 - State the exact action and emotion for this page.
-- Add visible page text for every interior page. Wrap every exact sentence in English double quotes. Prefer two to three short child-readable sentences, or three to four short lines, when needed to explain the page content, action change, emotional shift, or story transition accurately. Place the text in quiet margin or open sky/floor/wall areas, and specify uniform readable children's book typography with same-size characters throughout each sentence.
-- When a page combines two visually overlapping adjacent beats, add two exact quoted sentences and specify staggered placements for them so the first sentence and second sentence are visually separated.
+- Add visible page text for every interior page. Wrap every exact text block in English double quotes. Default to 2-3 short child-readable text blocks: `{page text block 1}` carries over from the previous page, `{page text block 2}` explains the current action, discovery, feeling, or cause, and optional `{page text block 3}` leads toward the next page. Use one sentence only when the image is extremely simple and the story is already fully clear. Place each block in its own quiet margin or open sky/floor/wall area, and specify readable children's book typography with consistent font size, line spacing, weight, style, and baseline inside each block.
+- When a page combines two visually overlapping adjacent beats, add separate exact quoted text blocks and specify staggered placements so the blocks are visually separated.
 - Add the exact lower-right page number for every interior page as a separate text element, for example `"1"` for page-01. Specify lower-right placement, small readable size, soft color, and simple rounded style. The cover must not include a page number.
 - State any object carried over from previous pages.
 - Avoid changing clothing, body colors, signature props, or species.
 
 Compact interior prompt template:
 
-`内页第N页，竖版3:4。{compact style line} 角色：{visible compact anchors}。画面：{page action, emotion, composition, carried object if any}。文字：在{quiet area}放入"{page text}"，圆润儿童绘本中文字体，同句字形大小一致；右下角页码"N"，小号柔和深绿。{compact negative line}`
+`内页第N页，竖版3:4。{compact style line} 角色：{visible compact anchors}。画面：{page action, emotion, composition, carried object if any}。文字：在{quiet area 1}放入"{page text block 1}"，在{quiet area 2}放入"{page text block 2}"，需要时在{quiet area 3}放入"{page text block 3}"；每个文字块为圆润儿童绘本中文字体，独立安静区域，字号统一，行距舒展，同块字形大小一致；右下角页码"N"，小号柔和深绿。{compact negative line}`
 
 ## Image QA
 
@@ -177,6 +178,8 @@ Inspect generated images for:
 - no unwanted text or pseudo-text
 - no busy speckled shadow texture, dense paper noise, heavy stippling, or high-contrast broken light across faces/text
 - every interior page contains readable page text that accurately explains the page content, action change, emotional shift, or story transition
+- every interior page uses 2-3 short text blocks by default, with independent quiet areas and no crowded long paragraph
+- every interior page text naturally connects with the previous and next page through time progression, action continuation, emotional change, cause-and-effect, or movement to a new place
 - every interior page contains the correct lower-right Arabic page number, and the cover contains no page number
 - intended interior page text is exact, readable, and uses consistent character size within each sentence
 - no extra limbs, distorted faces, or confusing objects
@@ -187,6 +190,32 @@ Regenerate only failed images. Keep successful images stable. Do not display fai
 ## Generation Timing
 
 This section applies only when the user explicitly asks for actual image generation. Full image packages include a character reference sheet, cover, and at least 12 interior images; generating at least two candidates per image target can be slow. Allow extended waiting time for generation, inspection, comparison, and selective regeneration. Do not treat slow generation as a failure by itself. Continue until all required image targets have the requested candidate set passing QA, the user chooses finalists, the user cancels, or the image tool returns a real failure.
+
+## Video Script
+
+Default Word prompt packages must include one AI video script after the Xiaohongshu copy and tags. The script is for future video generation only; do not call any video generation tool unless the user explicitly asks.
+
+The video script must:
+
+- run about 15-20 seconds total
+- use as many short shots as needed to make the story clear, with no fixed shot count
+- base every shot on the completed story, existing visual style, and fixed IP character anchors
+- avoid unrelated new plot, unrelated new characters, scary imagery, strong stimulation, or exaggerated commercial language
+- preserve the bright healing watercolor picturebook mood and 3-8 age suitability
+
+For each shot, include:
+
+- time range
+- visual content
+- character action
+- camera movement
+- mood
+- subtitle or voiceover
+- sound or music
+- transition
+- AI video generation prompt
+
+Each shot should advance story understanding. Do not split shots only to increase count, and do not summarize the whole story in one vague shot when the child-facing cause and effect would become unclear.
 
 ## Word Prompt Package
 
@@ -207,6 +236,7 @@ The Word document must include:
 - Xiaohongshu short intro
 - Xiaohongshu body copy
 - tags
+- video script
 
 Keep theme interpretation, knowledge cards, safety notes, role mode notes, character lock sheets, beat allocation, cover concept, global visual style, publishing file lists, upload checklists, and other supporting planning sections out of the Word document unless the user explicitly asks to include them.
 
@@ -270,11 +300,13 @@ Before final delivery, check:
 - visual style is very bright, luminous, healing, airy, and watercolor-led unless the user explicitly requested a different style
 - default delivery is a Word `.docx` prompt package named from the user's theme
 - multiple `、`-separated themes produce multiple independent Word files, one per theme
-- the Word file includes only the story title, full story, character reference prompt, cover prompt, all interior prompts, Xiaohongshu main title, short intro, body, and tags unless the user explicitly requested more sections
+- the Word file includes only the story title, full story, character reference prompt, cover prompt, all interior prompts, Xiaohongshu main title, short intro, body, tags, and video script unless the user explicitly requested more sections
 - cover prompt includes the exact story title wrapped in Chinese book-title brackets, placed upper-center with readable artistic lettering
 - all interior prompts are in order and there are at least 12 pages
 - characters remain consistent across prompts
-- every interior prompt includes readable and story-accurate page text; page text is not too sparse or too long, and embedded text rules require uniform same-size characters within each sentence
+- every interior prompt includes readable and story-accurate 2-3 short page-text blocks by default; the blocks explain story action, emotion, cause, and page transition without becoming crowded long paragraphs
+- every interior prompt gives each page-text block an independent quiet area and exact quoted text with placement, size, line spacing, font style, and layout
+- adjacent interior prompts contain natural transitions so pages do not read like isolated cards
 - every interior prompt includes the correct lower-right page number, starting at 1, and the cover prompt has no page number
 - story has a clear beginning, turning point, climax, and ending
 - story logic passes the not-contrived test: no forced moral, abrupt turn, coincidence-only solution, unexplained helper, or sudden emotional reversal
@@ -283,4 +315,5 @@ Before final delivery, check:
 - if image generation was explicitly requested, each requested image target has at least two QA-passed candidates whenever possible, with clear labels for user selection
 - no image generation tool was called unless the user explicitly requested image generation
 - Xiaohongshu unified-format main title, short intro, body, tags, and image order are included
+- video script is included after the Xiaohongshu copy and tags, runs about 15-20 seconds, uses no fixed shot count, and each shot includes time range, visual content, character action, camera movement, mood, subtitle or voiceover, sound or music, transition, and AI video generation prompt
 - no auto-publish action is taken
