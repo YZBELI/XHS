@@ -146,11 +146,12 @@ For each beat, define:
 - `visible action`: what the illustration can show
 - `visual distinctness`: how this beat looks different from the previous beat in setting, camera distance, character pose, object state, or emotional focus
 - `emotional shift`: how the character's feeling or understanding changes
+- `page transition wording`: the natural wording that connects this page to the previous and next page through time progression, action continuation, emotional change, cause-and-effect, or movement to a new place
 - `next-page hook`: what question, action, object, or discovery carries the reader into the next page
 
 Only after this allocation is clear, write the page-by-page storyboard.
 
-Before finalizing page count, run a visual-overlap pass. If two adjacent beats would show nearly the same setting, camera angle, character pose, object arrangement, and emotional value, merge them into one stronger page instead of producing two near-duplicate images. The merged page must still preserve the causal sequence in its page text and prompt. If merging lowers the count, add pages only for real missing story beats or needed transitions; do not split duplicate visuals just to inflate the count.
+Before finalizing page count, run a visual-overlap pass. If two adjacent beats would show nearly the same setting, camera angle, character pose, object arrangement, and emotional value, merge them into one stronger page instead of producing two near-duplicate images. The merged page must still preserve the causal sequence in its page text and prompt. If merging lowers the count, add pages only for real missing story beats or needed transitions; do not split duplicate visuals just to inflate the page count.
 
 Choose page count after the allocation plan:
 
@@ -179,15 +180,18 @@ Each page must include:
 - page number
 - story beat
 - page text
+- page text block 1: carry over from the previous page through time, place, action, or emotion
+- page text block 2: explain the current action, discovery, feeling, or cause
+- page text block 3: optional next-page question, discovery, or action
 - image action
 - characters visible
 - previous-page link
 - next-page hook
 - continuity note
 
-Page text is mandatory for every interior page and must be written so readers understand the exact page content, action change, emotional shift, or story transition. It should accurately describe what is happening in the current illustration, not merely name the theme or repeat a vague caption. Prefer two to three short child-readable sentences, or three to four short lines, when the picture needs context; one sentence is acceptable only when the image is extremely simple and already clear. Do not write a dense paragraph. The text should sound read-aloud friendly, with concrete actions, sensory details, clear cause-and-effect, and gentle rhythm. This page text must appear inside the final interior image, placed in quiet visual areas, with uniform typography: every character in the same sentence uses the same size, weight, style, and baseline. If one page combines two visually overlapping beats, include two separate sentences, place them in staggered quiet areas such as upper-left sky and lower-left floor, and make each sentence describe its own beat. Each interior page must also show its Arabic page number in the lower-right corner, starting from 1 and continuing sequentially; the cover has no page number. Avoid using captions as a substitute for action.
+Page text is mandatory for every interior page and must be written so readers understand the exact page content, action change, emotional shift, cause, or story transition. It should accurately describe what is happening in the current illustration, not merely name the theme or repeat a vague caption. Default to 2-3 short child-readable text blocks, not one paragraph: the first block carries over from the previous page, the second block explains the current action or discovery, and the third block appears when needed to pull the reader toward the next page. One sentence is acceptable only when the image is extremely simple and already clear. Do not write dense paragraphs or add filler just to increase text. The text should sound like children's picturebook prose, with concrete actions, sensory details, clear cause-and-effect, and gentle rhythm. Each page must include a natural connection, but do not mechanically force the same connector on every page. Choose transition wording from the story context, such as `过了一会`, `这时`, `于是`, `后来`, `到了傍晚`, `雨停以后`, `因为...所以...`, `小暖想了想`, a repeated action, a changed feeling, or a move to a new place. This page text must appear inside the final interior image, placed in separate quiet visual areas for each block, with uniform typography inside each block: every character uses the same size, weight, style, line spacing, and baseline. If one page combines two visually overlapping beats, include separate text blocks, place them in staggered quiet areas such as upper-left sky and lower-left floor, and make each block describe its own beat. Each interior page must also show its Arabic page number in the lower-right corner, starting from 1 and continuing sequentially; the cover has no page number. Avoid using captions as a substitute for action.
 
-Adjacent pages must be connected by cause, discovery, repeated object, character decision, emotional change, or movement through the setting. If two neighboring pages can be swapped without changing the story, rewrite them because they are too independent.
+Adjacent pages must be connected by cause, discovery, repeated object, character decision, emotional change, time progression, action continuation, or movement through the setting. If two neighboring pages can be swapped without changing the story, rewrite them because they are too independent. Page text must make the connection visible enough that adjacent pages do not read like isolated cards.
 
 ## Safety Handling
 
